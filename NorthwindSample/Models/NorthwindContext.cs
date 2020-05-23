@@ -1,13 +1,16 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace NorthwindSample.Models
 {
     public partial class NorthwindContext : DbContext
     {
-        public NorthwindContext()
+        public IConfiguration Configuration { get; set; }
+        public NorthwindContext(IConfiguration configuration)
         {
+            Configuration = configuration;
         }
 
         public NorthwindContext(DbContextOptions<NorthwindContext> options)
@@ -50,7 +53,7 @@ namespace NorthwindSample.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=localhost,1433;Initial Catalog=Northwind;User ID=sa;Password=<YourStrong!Passw0rd>;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer(Configuration.GetConnectionString("NorthwindDatabase"));
             }
         }
 
