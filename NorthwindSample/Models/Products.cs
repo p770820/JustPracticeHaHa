@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace NorthwindSample.Models
 {
@@ -21,8 +22,11 @@ namespace NorthwindSample.Models
         public short? ReorderLevel { get; set; }
         public bool Discontinued { get; set; }
 
+        [JsonIgnore]
         public virtual Categories Category { get; set; }
+        [JsonIgnore]
         public virtual Suppliers Supplier { get; set; }
+        [JsonIgnore]
         public virtual ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

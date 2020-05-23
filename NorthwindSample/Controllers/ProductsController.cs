@@ -24,7 +24,12 @@ namespace NorthwindSample.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Products>>> GetProducts()
         {
-            return await _context.Products.ToListAsync();
+            // 在 Northwinds 這個 case 下 用 Include 會發生循環參考
+            return await _context.Products
+                .Include(p => p.OrderDetails)
+                .ToListAsync();
+
+            // return await _context.Products.ToListAsync();
         }
 
         // GET: api/Products/5
