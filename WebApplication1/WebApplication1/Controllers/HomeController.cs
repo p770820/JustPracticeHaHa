@@ -14,5 +14,26 @@ namespace WebApplication1.Controllers
 
             return View();
         }
+
+        // Nest partial A
+        public ActionResult NPA()
+        {
+            var model = new Temp();
+            model.ShowStr = "我是 NPAAAAA";
+            return View(model);
+        }
+
+        // Nest partial B
+        public ActionResult NPB()
+        {
+            var model = new Temp();
+            model.ShowStr= "我是 NPB B B B B";
+            return View(model);
+        }
+    }
+
+    public class Temp
+    {
+        public string ShowStr { get; set; }
     }
 }

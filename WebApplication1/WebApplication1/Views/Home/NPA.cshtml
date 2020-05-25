@@ -1,0 +1,12 @@
+﻿@model WebApplication1.Controllers.Temp
+@{
+    ViewBag.Title = "NPA";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>NPA</h2>
+
+@Html.Partial("~/Views/Shared/_NPALevel1.cshtml",Model.ShowStr)
+
+
+
