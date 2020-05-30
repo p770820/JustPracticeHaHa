@@ -35,5 +35,39 @@ namespace MakeHttpSample.Controllers
                 return BadRequest();
             }
         }
+
+        public async Task<IActionResult> CallBlogByNamed()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "search/label/ASP.NET Core");
+            var client = _httpClient.CreateClient("blog");
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return Content(result, new MediaTypeHeaderValue("text/html"));
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        public async Task<IActionResult> CallGithubByNamed()
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, "repos/kkbruce/AspNetCore-Practice/branches");
+            var client = _httpClient.CreateClient("github");
+            var response = await client.SendAsync(request);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

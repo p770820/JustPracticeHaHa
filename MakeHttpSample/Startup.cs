@@ -25,6 +25,20 @@ namespace MakeHttpSample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHttpClient();
+
+            services.AddHttpClient("blog", b =>
+            {
+                b.BaseAddress = new Uri("https://blog.kkbruce.net/");
+                b.DefaultRequestHeaders.Add("User-Agent", "kkbruce labs");
+            });
+            services.AddHttpClient("github", g =>
+            {
+                g.BaseAddress = new Uri("https://api.github.com/");
+                // Two headers required
+                g.DefaultRequestHeaders.Add("Accept", "application/vnd.github.v3+json");
+                g.DefaultRequestHeaders.Add("User-Agent", "kkbruce labs");
+            });
+
             services.AddControllers();
         }
 
