@@ -10,6 +10,7 @@ namespace FormatterSample.Controllers
     [Route("api/[controller]")]
     [ApiController]
     //[Produces("application/xml")]
+    //[Produces("text/csv")]
     [FormatFilter]
     public class BlogController : ControllerBase
     {

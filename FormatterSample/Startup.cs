@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FormatterSample.Formatter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Net.Http.Headers;
 
 namespace FormatterSample
 {
@@ -24,13 +26,16 @@ namespace FormatterSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers()
-                //.AddJsonOptions(opt =>
-                //{
-                //    opt.JsonSerializerOptions.IgnoreNullValues = true;
-                //})
-                .AddNewtonsoftJson() //JSON.NET 
-                .AddXmlSerializerFormatters(); // Accept: application/xml
+            services.AddControllers(config =>
+            {
+                config.FormatterMappings.SetMediaTypeMappingForFormat("csv"
+                    , new MediaTypeHeaderValue("text/csv"));
+                config.OutputFormatters.Add(new CsvOutputFormatter());
+            })
+            .AddNewtonsoftJson() //JSON.NET 
+            .AddXmlSerializerFormatters();
+            ; // Accept: application/xml
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
