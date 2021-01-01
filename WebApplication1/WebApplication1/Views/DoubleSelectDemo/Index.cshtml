@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<div>
+    @using (Ajax.BeginForm("LetsGetItems", new AjaxOptions() { UpdateTargetId = "target" ,  InsertionMode = InsertionMode.Replace }))
+    {
+        @Html.DropDownList("DDL_1", ViewBag.ItemsForDDL_1 as IEnumerable<SelectListItem>, new { @class = "form-control", onchange = "$(this.form).submit();" })
+    }
+</div>
+<div id="target">
+    @Html.DropDownList("DDL_2", ViewBag.ItemsForDDL_2 as IEnumerable<SelectListItem>, new { @class = "form-control" })
+</div>
+
+@section scripts{
+    
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    }

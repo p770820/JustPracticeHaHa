@@ -1,0 +1,11 @@
+﻿@model WebApplication1.Controllers.Person
+@{
+    ViewBag.Title = "Index2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index2</h2>
+
+
+
+@Html.DropDownList("Name", new List<SelectListItem>(), "All", new { })

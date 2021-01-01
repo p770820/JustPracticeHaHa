@@ -15,6 +15,17 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        public ActionResult Index2()
+        {
+            var model = new Person()
+            {
+                Id = 1,
+                Name = "Peter"
+            };
+            return View(model);
+        }
+
+
         // Nest partial A
         public ActionResult NPA()
         {
@@ -30,6 +41,12 @@ namespace WebApplication1.Controllers
             model.ShowStr= "我是 NPB B B B B";
             return View(model);
         }
+    }
+
+    public class Person
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 
     public class Temp
