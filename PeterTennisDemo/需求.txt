@@ -1,0 +1,34 @@
+http://codingdojo.org/kata/Tennis/
+
+Tennis
+About this Kata
+
+This Kata is about implementing a simple tennis game. I came up with it while thinking about Wii tennis, where they have simplified tennis, so each set is one game.
+這 Kata 是一個關於時做一個簡單的網球遊戲。
+我想到Wii網球時就想到了它，因為Wii網球簡化了網球，所以每組都是一場比賽。
+
+
+The scoring system is rather simple:
+分數系統 相當簡單
+
+1. Each player can have either of these points in one game 0 15 30 40
+1. 每個選手在一場比賽中 可以有這些分數 0 15 30 40 任一個。
+
+2. If you have 40 and you win the ball you win the game, however there are special rules.
+2. 如果你有 40 分 ，你贏球你贏了比賽，然而有特別的規則。
+
+3. If both have 40 the players are deuce. a. If the game is in deuce, the winner of a ball will have advantage and game ball. b. If the player with advantage wins the ball he wins the game c. If the player without advantage wins they are back at deuce.
+3. 如果兩個選手都40 是 deuce (平局)
+a. 如果比賽是平局，球的獲勝者將擁有優勢，比賽球
+b. 如果有優勢的球員贏得球，他就贏得比賽
+c. 如果沒有優勢的玩家獲勝，他們將回到平局。
+
+===== Alternate description of the rules per Wikipedia ( http://en.wikipedia.org/wiki/Tennis#Scoring ):
+
+1. A game is won by the first player to have won at least four points in total and at least two points more than the opponent.
+
+2. The running score of each game is described in a manner peculiar to tennis: scores from zero to three points are described as “love”, “fifteen”, “thirty”, and “forty” respectively.
+
+3. If at least three points have been scored by each player, and the scores are equal, the score is “deuce”.
+
+4. If at least three points have been scored by each side and a player has one more point than his opponent, the score of the game is “advantage” for the player in the lead.
