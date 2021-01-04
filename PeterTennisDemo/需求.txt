@@ -26,9 +26,16 @@ c. 如果沒有優勢的玩家獲勝，他們將回到平局。
 ===== Alternate description of the rules per Wikipedia ( http://en.wikipedia.org/wiki/Tennis#Scoring ):
 
 1. A game is won by the first player to have won at least four points in total and at least two points more than the opponent.
+1. 比賽被贏藉由  已經贏至少四個 point 和 至少兩個 points 超過對手的  第一個選手 
 
 2. The running score of each game is described in a manner peculiar to tennis: scores from zero to three points are described as “love”, “fifteen”, “thirty”, and “forty” respectively.
+2. 每場比賽跑分 對於網球 是被描述 用 一種 特有的方式 。 分數  從 0 到 3 分被描述 像是 "love"、"fifteen"、"thrity"、"forty"  分別地
 
 3. If at least three points have been scored by each player, and the scores are equal, the score is “deuce”.
+3.如果至少三分 已經被得分 藉由 每一選手 ，分數相等，這分就是 deuce (平局)
 
 4. If at least three points have been scored by each side and a player has one more point than his opponent, the score of the game is “advantage” for the player in the lead.
+4. 如果至少 3 分被得分 藉由每一邊， 一個選手有多一分 超過對手，比賽的分數是 "advantage" (優勢) 對於 領先的選手
+
+
+
