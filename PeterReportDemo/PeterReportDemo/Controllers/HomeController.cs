@@ -29,7 +29,7 @@ namespace PeterReportDemo.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult DownloadFirstReport()
         {
             // rdlc
