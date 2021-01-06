@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{9E76CE21-933
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisGame.Library", "TennisGame.Library\TennisGame.Library.csproj", "{52C4804C-1C2D-4FB8-8D3F-422ACFE315EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisGame.Tests", "TennisGame.Tests\TennisGame.Tests.csproj", "{1377DC4E-1A6D-4757-9C06-FFE3EE3A5D03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisGame.Library.Tests", "TennisGame.Tests\TennisGame.Library.Tests.csproj", "{1377DC4E-1A6D-4757-9C06-FFE3EE3A5D03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
