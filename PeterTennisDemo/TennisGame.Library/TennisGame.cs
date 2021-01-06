@@ -10,7 +10,7 @@ namespace TennisGame.Library
 
         public string Score()
         {
-            throw new NotImplementedException();
+            return "Love All";
         }
     }
 }
