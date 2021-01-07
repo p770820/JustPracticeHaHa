@@ -65,6 +65,12 @@ namespace TennisGame.Tests
             ScoreShouldBe("Love All");
         }
 
+        [TestMethod]
+        public void Fifteen_Love()
+        {
+            ScoreShouldBe("Fifteen Love");
+        }
+
         private static void ScoreShouldBe(string expected)
         {
             // Arrange
