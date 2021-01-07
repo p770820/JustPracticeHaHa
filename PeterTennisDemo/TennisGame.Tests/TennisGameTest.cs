@@ -62,6 +62,11 @@ namespace TennisGame.Tests
         [TestMethod]
         public void love_all()
         {
+            ScoreShouldBe("Love All");
+        }
+
+        private static void ScoreShouldBe(string expected)
+        {
             // Arrange
             var tennisGame = new Library.TennisGame();
 
@@ -69,7 +74,7 @@ namespace TennisGame.Tests
             string score = tennisGame.Score();
 
             // Assert
-            Assert.AreEqual("Love All", score);
+            Assert.AreEqual(expected, score);
         }
     }
 }
