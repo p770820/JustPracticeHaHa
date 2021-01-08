@@ -17,7 +17,9 @@ namespace TennisGame.Library
             Dictionary<int, string> scoreLookup = new Dictionary<int, string>()
             {
                 { 1,"Fifteen" },
-                { 2,"Thirty" }
+                { 2,"Thirty" },
+                { 3,"Forty" }
+
             };
 
             if (this._firstPlayerScoreTimes > 0)
