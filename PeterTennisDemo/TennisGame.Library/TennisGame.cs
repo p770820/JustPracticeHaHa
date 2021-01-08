@@ -6,6 +6,7 @@ namespace TennisGame.Library
     public class TennisGame
     {
         private int _firstPlayerScoreTimes = 0;
+        private int _secondPlayerScoreTimes = 0;
 
         public TennisGame()
         {
@@ -26,6 +27,11 @@ namespace TennisGame.Library
             {
                 return $"{ scoreLookup[this._firstPlayerScoreTimes] } Love";
             }
+
+            if(this._secondPlayerScoreTimes > 0)
+            {
+                return $"Love { scoreLookup[this._secondPlayerScoreTimes] }";
+            }
             return "Love All";
         }
 
@@ -36,7 +42,7 @@ namespace TennisGame.Library
 
         public void SecondPlayerScore()
         {
-            throw new NotImplementedException();
+            this._secondPlayerScoreTimes++;
         }
     }
 }
