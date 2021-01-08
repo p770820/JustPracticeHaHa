@@ -12,6 +12,8 @@ namespace TennisGame.Tests
     [TestClass]
     public class TennisGameTest
     {
+        private Library.TennisGame _tennisGame = new Library.TennisGame();
+
         public TennisGameTest()
         {
             //
@@ -68,16 +70,14 @@ namespace TennisGame.Tests
         [TestMethod]
         public void Fifteen_Love()
         {
+            this._tennisGame.FirstPlayerScore();
             ScoreShouldBe("Fifteen Love");
         }
 
-        private static void ScoreShouldBe(string expected)
+        private void ScoreShouldBe(string expected)
         {
-            // Arrange
-            var tennisGame = new Library.TennisGame();
-
             // Act
-            string score = tennisGame.Score();
+            string score = this._tennisGame.Score();
 
             // Assert
             Assert.AreEqual(expected, score);
