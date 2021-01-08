@@ -6,18 +6,23 @@ namespace TennisGame.Library
     public class TennisGame
     {
         private int _firstPlayerScoreTimes = 0;
-        private Dictionary<int, string> _scoreDic = new Dictionary<int, string>();
+
         public TennisGame()
         {
-            this._scoreDic.Add(1, "Fifteen Love");
-            this._scoreDic.Add(2, "Thirty Love");
+
         }
 
         public string Score()
         {
-            if(this._firstPlayerScoreTimes > 0)
+            Dictionary<int, string> scoreLookup = new Dictionary<int, string>()
             {
-                return this._scoreDic[this._firstPlayerScoreTimes];
+                { 1,"Fifteen" },
+                { 2,"Thirty" }
+            };
+
+            if (this._firstPlayerScoreTimes > 0)
+            {
+                return $"{ scoreLookup[this._firstPlayerScoreTimes] } Love";
             }
             return "Love All";
         }
