@@ -15,6 +15,12 @@ namespace TennisGame.Library
             {
                 return "Fifteen Love";
             }
+
+            if(this._firstPlayerScoreTimes == 2)
+            {
+                return "Thirty Love";
+            }
+
             return "Love All";
         }
 
