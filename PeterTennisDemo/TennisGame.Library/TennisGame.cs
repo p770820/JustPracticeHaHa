@@ -4,14 +4,14 @@ namespace TennisGame.Library
 {
     public class TennisGame
     {
-        private int _firstPlayerScore = 0;
+        private int _firstPlayerScoreTimes = 0;
         public TennisGame()
         {
         }
 
         public string Score()
         {
-            if(this._firstPlayerScore > 0)
+            if(this._firstPlayerScoreTimes == 1)
             {
                 return "Fifteen Love";
             }
@@ -20,7 +20,7 @@ namespace TennisGame.Library
 
         public void FirstPlayerScore()
         {
-            this._firstPlayerScore++;
+            this._firstPlayerScoreTimes++;
         }
     }
 }
