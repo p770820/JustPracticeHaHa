@@ -74,6 +74,14 @@ namespace TennisGame.Tests
             ScoreShouldBe("Fifteen Love");
         }
 
+        [TestMethod]
+        public void Thirty_Love()
+        {
+            this._tennisGame.FirstPlayerScore();
+            this._tennisGame.FirstPlayerScore();
+            ScoreShouldBe("Thirty Love");
+        }
+
         private void ScoreShouldBe(string expected)
         {
             // Act
