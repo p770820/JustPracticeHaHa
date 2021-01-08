@@ -33,5 +33,10 @@ namespace TennisGame.Library
         {
             this._firstPlayerScoreTimes++;
         }
+
+        public void SecondPlayerScore()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
