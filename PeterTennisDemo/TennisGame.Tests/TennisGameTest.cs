@@ -77,9 +77,30 @@ namespace TennisGame.Tests
         [TestMethod]
         public void Thirty_Love()
         {
-            this._tennisGame.FirstPlayerScore();
-            this._tennisGame.FirstPlayerScore();
+            GivenFirstPlayerScoreTimes(2);
             ScoreShouldBe("Thirty Love");
+        }
+
+        [TestMethod]
+        public void Forty_Love()
+        {
+            GivenFirstPlayerScoreTimes(3);
+            ScoreShouldBe("Forty Love");
+        }
+
+        [TestMethod]
+        public void Love_Fifteen()
+        {
+            this._tennisGame.SecondPlayerScore();
+            ScoreShouldBe("Love Fifteen");
+        }
+
+        private void GivenFirstPlayerScoreTimes(int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                this._tennisGame.FirstPlayerScore();
+            }
         }
 
         private void ScoreShouldBe(string expected)
