@@ -95,6 +95,21 @@ namespace TennisGame.Tests
             ScoreShouldBe("Love Fifteen");
         }
 
+        [TestMethod]
+        public void Love_Thirty()
+        {
+            GivenSecondPlayerScoreTimes(2);
+            ScoreShouldBe("Love Thirty");
+        }
+
+        private void GivenSecondPlayerScoreTimes(int times)
+        {
+            for (int i = 0; i < times; i++)
+            {
+                this._tennisGame.SecondPlayerScore();
+            }
+        }
+
         private void GivenFirstPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
