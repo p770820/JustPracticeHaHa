@@ -17,15 +17,19 @@ namespace TennisGame.Library
         {
             Dictionary<int, string> scoreLookup = new Dictionary<int, string>()
             {
-                { 0, "Love" },
-                { 1, "Fifteen" },
-                { 2, "Thirty" },
-                { 3, "Forty" }
+                { 1,"Fifteen" },
+                { 2,"Thirty" },
+                { 3,"Forty" }
             };
 
-            if (this._firstPlayerScoreTimes > 0 || this._secondPlayerScoreTimes > 0)
+            if (this._firstPlayerScoreTimes > 0)
             {
-                return $"{ scoreLookup[this._firstPlayerScoreTimes] } { scoreLookup[this._secondPlayerScoreTimes] }";
+                return $"{ scoreLookup[this._firstPlayerScoreTimes] } Love";
+            }
+
+            if (this._secondPlayerScoreTimes > 0)
+            {
+                return $"Love { scoreLookup[this._secondPlayerScoreTimes] }";
             }
 
             return "Love All";

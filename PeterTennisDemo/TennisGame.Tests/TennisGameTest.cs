@@ -103,19 +103,11 @@ namespace TennisGame.Tests
         }
 
         [TestMethod]
-        public void Fifteen_Fifteen()
+        public void Fifteen_All()
         {
             GivenFirstPlayerScoreTimes(1);
             GivenSecondPlayerScoreTimes(1);
-            ScoreShouldBe("Fifteen Fifteen");
-        }
-
-        [TestMethod]
-        public void Thirty_Thirty()
-        {
-            GivenFirstPlayerScoreTimes(2);
-            GivenSecondPlayerScoreTimes(2);
-            ScoreShouldBe("Thirty Thirty");
+            ScoreShouldBe("Fifteen All");
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
