@@ -25,6 +25,11 @@ namespace TennisGame.Library
 
             if (this._firstPlayerScoreTimes == this._secondPlayerScoreTimes)
             {
+                if (this._firstPlayerScoreTimes > 2)
+                {
+                    return "Deuse";
+                }
+
                 return $"{ scoreLookup[this._secondPlayerScoreTimes] } All";
             }
 
