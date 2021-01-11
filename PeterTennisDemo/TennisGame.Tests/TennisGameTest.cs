@@ -119,11 +119,11 @@ namespace TennisGame.Tests
         }
 
         [TestMethod]
-        public void Forty_All()
+        public void Deuse_When_3_3()
         {
             GivenFirstPlayerScoreTimes(3);
             GivenSecondPlayerScoreTimes(3);
-            ScoreShouldBe("Forty All");
+            ScoreShouldBe("Deuse");
         }
 
         private void GivenSecondPlayerScoreTimes(int times)
