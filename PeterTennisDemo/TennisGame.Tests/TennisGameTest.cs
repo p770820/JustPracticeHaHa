@@ -118,6 +118,14 @@ namespace TennisGame.Tests
             ScoreShouldBe("Thirty All");
         }
 
+        [TestMethod]
+        public void Forty_All()
+        {
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Forty All");
+        }
+
         private void GivenSecondPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
