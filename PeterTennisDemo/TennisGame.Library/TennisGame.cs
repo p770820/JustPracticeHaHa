@@ -33,7 +33,12 @@ namespace TennisGame.Library
                 return $"{ scoreLookup[this._secondPlayerScoreTimes] } All";
             }
 
-            if(this._secondPlayerScoreTimes > 3)
+            if (this._firstPlayerScoreTimes == 4 && this._secondPlayerScoreTimes == 0)
+            {
+                return $"FirstPlayer Win";
+            }
+
+            if (this._secondPlayerScoreTimes > 3)
             {
                 return $"SecondPlayer Adv";
             }
