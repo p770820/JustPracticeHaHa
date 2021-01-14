@@ -45,6 +45,11 @@ namespace TennisGame.Library
 
             if (this._secondPlayerScoreTimes > 3)
             {
+                if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 2)
+                {
+                    return $"SecondPlayer Win";
+                }
+
                 return $"SecondPlayer Adv";
             }
 
