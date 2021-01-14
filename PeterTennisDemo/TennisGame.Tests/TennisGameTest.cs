@@ -172,6 +172,14 @@ namespace TennisGame.Tests
             ScoreShouldBe("FirstPlayer Win");
         }
 
+        [TestMethod]
+        public void Deuse_When_5_5()
+        {
+            GivenFirstPlayerScoreTimes(5);
+            GivenSecondPlayerScoreTimes(5);
+            ScoreShouldBe("Deuse");
+        }
+
         private void GivenSecondPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
