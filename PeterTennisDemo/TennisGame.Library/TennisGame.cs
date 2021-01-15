@@ -7,6 +7,13 @@ namespace TennisGame.Library
     {
         private int _firstPlayerScoreTimes = 0;
         private int _secondPlayerScoreTimes = 0;
+        private Dictionary<int, string> _scoreLookup = new Dictionary<int, string>()
+            {
+                { 0, "Love" },
+                { 1, "Fifteen" },
+                { 2, "Thirty" },
+                { 3, "Forty" }
+            };
 
         public TennisGame()
         {
@@ -15,64 +22,65 @@ namespace TennisGame.Library
 
         public string Score()
         {
-            Dictionary<int, string> scoreLookup = new Dictionary<int, string>()
-            {
-                { 0, "Love" },
-                { 1, "Fifteen" },
-                { 2, "Thirty" },
-                { 3, "Forty" }
-            };
 
-            if (this._firstPlayerScoreTimes == this._secondPlayerScoreTimes)
+            if (this._firstPlayerScoreTimes > this._secondPlayerScoreTimes)
             {
-                if (this._firstPlayerScoreTimes > 2)
+                if (this._firstPlayerScoreTimes > 3)
                 {
-                    return "Deuse";
+                    if (this._firstPlayerScoreTimes == 4 && this._secondPlayerScoreTimes == 0)
+                    {
+                        return $"FirstPlayer Win";
+                    }
+
+                    if (this._firstPlayerScoreTimes - this._secondPlayerScoreTimes == 2)
+                    {
+                        return $"FirstPlayer Win";
+                    }
+                    return $"FirstPlayer Adv";
                 }
 
-                return $"{ scoreLookup[this._secondPlayerScoreTimes] } All";
-            }
-
-            if (this._firstPlayerScoreTimes == 4 && this._secondPlayerScoreTimes == 0)
-            {
-                return $"FirstPlayer Win";
-            }
-
-            if (this._firstPlayerScoreTimes == 0 && this._secondPlayerScoreTimes == 4)
-            {
-                return $"SecondPlayer Win";
-            }
-
-            if (this._secondPlayerScoreTimes > 3)
-            {
-                if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 2)
+                if (this._firstPlayerScoreTimes > 0)
                 {
-                    return $"SecondPlayer Win";
+                    return $"{ _scoreLookup[this._firstPlayerScoreTimes] } Love";
+                }
+            }
+            else if (this._secondPlayerScoreTimes > this._firstPlayerScoreTimes)
+            {
+                if (this._secondPlayerScoreTimes > 3)
+                {
+                    if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 4)
+                    {
+                        return $"SecondPlayer Win";
+                    }
+
+                    if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 2)
+                    {
+                        return $"SecondPlayer Win";
+                    }
+
+                    return $"SecondPlayer Adv";
                 }
 
-                return $"SecondPlayer Adv";
-            }
-
-            if (this._firstPlayerScoreTimes > 3)
-            {
-                if (this._firstPlayerScoreTimes - this._secondPlayerScoreTimes == 2)
+                if (this._secondPlayerScoreTimes > 0)
                 {
-                    return $"FirstPlayer Win";
+                    return $"Love { _scoreLookup[this._secondPlayerScoreTimes] }";
                 }
-                return $"FirstPlayer Adv";
             }
-
-            if (this._firstPlayerScoreTimes > 0)
+            else
             {
-                return $"{ scoreLookup[this._firstPlayerScoreTimes] } Love";
+                return IsDesue() ? "Deuse" : $"{ _scoreLookup[this._secondPlayerScoreTimes] } All";
             }
+            return "";
+        }
 
-            if (this._secondPlayerScoreTimes > 0)
-            {
-                return $"Love { scoreLookup[this._secondPlayerScoreTimes] }";
-            }
+        private bool IsDesue()
+        {
+            return IsSameScore() && this._firstPlayerScoreTimes > 2;
+        }
 
-            return "Love All";
+        private bool IsSameScore()
+        {
+            return this._firstPlayerScoreTimes == this._secondPlayerScoreTimes;
         }
 
         public void FirstPlayerScore()
