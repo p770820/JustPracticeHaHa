@@ -22,21 +22,22 @@ namespace TennisGame.Library
 
         public string Score()
         {
-
+            var leadPlayerName = "";
             if (this._firstPlayerScoreTimes > this._secondPlayerScoreTimes)
             {
+                leadPlayerName = "FirstPlayer";
                 if (this._firstPlayerScoreTimes > 3)
                 {
                     if (this._firstPlayerScoreTimes == 4 && this._secondPlayerScoreTimes == 0)
                     {
-                        return $"FirstPlayer Win";
+                        return $"{leadPlayerName} Win";
                     }
 
                     if (this._firstPlayerScoreTimes - this._secondPlayerScoreTimes == 2)
                     {
-                        return $"FirstPlayer Win";
+                        return $"{leadPlayerName} Win";
                     }
-                    return $"FirstPlayer Adv";
+                    return $"{leadPlayerName} Adv";
                 }
 
                 if (this._firstPlayerScoreTimes > 0)
@@ -46,19 +47,20 @@ namespace TennisGame.Library
             }
             else if (this._secondPlayerScoreTimes > this._firstPlayerScoreTimes)
             {
+                leadPlayerName = "SecondPlayer";
                 if (this._secondPlayerScoreTimes > 3)
                 {
                     if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 4)
                     {
-                        return $"SecondPlayer Win";
+                        return $"{leadPlayerName} Win";
                     }
 
                     if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 2)
                     {
-                        return $"SecondPlayer Win";
+                        return $"{leadPlayerName} Win";
                     }
 
-                    return $"SecondPlayer Adv";
+                    return $"{leadPlayerName} Adv";
                 }
 
                 if (this._secondPlayerScoreTimes > 0)
