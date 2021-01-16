@@ -143,6 +143,14 @@ namespace TennisGame.Tests
         }
 
         [TestMethod]
+        public void FirstPlayer_Adv_When_5_4()
+        {
+            GivenFirstPlayerScoreTimes(5);
+            GivenSecondPlayerScoreTimes(4);
+            ScoreShouldBe("FirstPlayer Adv");
+        }
+
+        [TestMethod]
         public void SecondPlayer_Adv_When_3_4()
         {
             GivenFirstPlayerScoreTimes(3);
@@ -169,6 +177,14 @@ namespace TennisGame.Tests
         {
             GivenFirstPlayerScoreTimes(5);
             GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("FirstPlayer Win");
+        }
+
+        [TestMethod]
+        public void FirstPlayer_Win_When_6_4()
+        {
+            GivenFirstPlayerScoreTimes(6);
+            GivenSecondPlayerScoreTimes(4);
             ScoreShouldBe("FirstPlayer Win");
         }
 
