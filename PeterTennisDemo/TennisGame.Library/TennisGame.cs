@@ -22,57 +22,46 @@ namespace TennisGame.Library
 
         public string Score()
         {
-            var leadPlayerName = "";
-            if (this._firstPlayerScoreTimes > this._secondPlayerScoreTimes)
-            {
-                leadPlayerName = "FirstPlayer";
-                if (this._firstPlayerScoreTimes > 3)
-                {
-                    if (this._firstPlayerScoreTimes == 4 && this._secondPlayerScoreTimes == 0)
-                    {
-                        return $"{leadPlayerName} Win";
-                    }
+            var leadPlayerName = this._firstPlayerScoreTimes > this._secondPlayerScoreTimes ? "FirstPlayer" : "SecondPlayer";
+            var leadScoreTimes = this._firstPlayerScoreTimes > this._secondPlayerScoreTimes ? this._firstPlayerScoreTimes : this._secondPlayerScoreTimes;
+            var behindScoreTimes = this._firstPlayerScoreTimes > this._secondPlayerScoreTimes ? this._secondPlayerScoreTimes : this._firstPlayerScoreTimes;
 
-                    if (this._firstPlayerScoreTimes - this._secondPlayerScoreTimes == 2)
-                    {
-                        return $"{leadPlayerName} Win";
-                    }
-                    return $"{leadPlayerName} Adv";
-                }
-
-                if (this._firstPlayerScoreTimes > 0)
-                {
-                    return $"{ _scoreLookup[this._firstPlayerScoreTimes] } Love";
-                }
-            }
-            else if (this._secondPlayerScoreTimes > this._firstPlayerScoreTimes)
-            {
-                leadPlayerName = "SecondPlayer";
-                if (this._secondPlayerScoreTimes > 3)
-                {
-                    if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 4)
-                    {
-                        return $"{leadPlayerName} Win";
-                    }
-
-                    if (this._secondPlayerScoreTimes - this._firstPlayerScoreTimes == 2)
-                    {
-                        return $"{leadPlayerName} Win";
-                    }
-
-                    return $"{leadPlayerName} Adv";
-                }
-
-                if (this._secondPlayerScoreTimes > 0)
-                {
-                    return $"Love { _scoreLookup[this._secondPlayerScoreTimes] }";
-                }
-            }
-            else
+            if (IsSameScore())
             {
                 return IsDesue() ? "Deuse" : $"{ _scoreLookup[this._secondPlayerScoreTimes] } All";
             }
+
+            if (IsAdv(leadScoreTimes))
+            {
+                return $"{leadPlayerName} { (IsWin(leadScoreTimes, behindScoreTimes) ? "Win" : "Adv") }";
+            }
+
+            if (this._firstPlayerScoreTimes > 0)
+            {
+                return $"{ _scoreLookup[this._firstPlayerScoreTimes] } Love";
+            }
+
+            if (this._secondPlayerScoreTimes > 0)
+            {
+                return $"Love { _scoreLookup[this._secondPlayerScoreTimes] }";
+            }
+
             return "";
+        }
+
+        private static bool IsWin(int leadScoreTimes, int behindScoreTimes)
+        {
+            return (leadScoreTimes == 4 && behindScoreTimes == 0) || (leadScoreTimes - behindScoreTimes == 2);
+        }
+
+        private bool DifferentScore(int leadScoreTimes)
+        {
+            return !IsSameScore() && leadScoreTimes > 0;
+        }
+
+        private bool IsAdv(int leadScoreTimes)
+        {
+            return !IsSameScore() && leadScoreTimes > 3;
         }
 
         private bool IsDesue()
