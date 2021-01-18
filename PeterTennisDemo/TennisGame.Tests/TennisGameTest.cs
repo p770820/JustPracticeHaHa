@@ -205,6 +205,15 @@ namespace TennisGame.Tests
             ScoreShouldBe("Deuse");
         }
 
+        [ExpectedException(typeof(ScoreOutOfRangeException))]
+        [TestMethod]
+        public void Throw_Exception_When_5_0()
+        {
+            GivenFirstPlayerScoreTimes(5);
+            GivenSecondPlayerScoreTimes(0);
+            string score = this._tennisGame.Score();
+        }
+
         private void GivenSecondPlayerScoreTimes(int times)
         {
             for (int i = 0; i < times; i++)
