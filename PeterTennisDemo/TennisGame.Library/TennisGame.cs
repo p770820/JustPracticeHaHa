@@ -68,6 +68,10 @@ namespace TennisGame.Library
 
         private bool IsWin(int leadScoreTimes, int behindScoreTimes)
         {
+            if (leadScoreTimes - behindScoreTimes > 4)
+            {
+                throw new ScoreOutOfRangeException();
+            }
             return (leadScoreTimes == 4 && behindScoreTimes == 0) || (leadScoreTimes - behindScoreTimes == 2);
         }
 
