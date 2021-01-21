@@ -26,5 +26,10 @@ namespace IMSYSDemo.Controllers
 
             return View();
         }
+
+        public ActionResult GridDemo()
+        {
+            return View();
+        }
     }
 }
