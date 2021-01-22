@@ -5,12 +5,27 @@
 
 <h2>GridDemo</h2>
 
+
+<button id="btnDelete" class="btn btn-danger">
+    刪除
+</button>
 <div id="grid"></div>
 
 @section Scripts{
 
     <script>
         $(document).ready(function () {
+
+            // https://docs.telerik.com/kendo-ui/api/javascript/kendo/methods/confirm
+            $('#btnDelete').on('click', function () {
+                kendo.confirm('確定要刪除?')
+                    .done(function () {
+                        console.log('已刪除!');
+                    })
+                    .fail(function () {
+
+                    });
+            });
 
             var products = [{
                 ProductID: 1,
