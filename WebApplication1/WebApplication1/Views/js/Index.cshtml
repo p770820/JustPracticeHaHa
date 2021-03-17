@@ -5,7 +5,38 @@
 </button>
 
 
+@section Scripts{
 
-<script>
+    <script>
 
-</script>
+
+        let oList = [];
+        let caseList = [];
+        $('#btn').on('click', function () {
+
+            oList.push({ orderId: 1, case: [{ caseId: 1, caseName: 'A' }, { caseId: 2, caseName: 'B' }] });
+            oList.push({ orderId: 2, case: [{ caseId: 3, caseName: 'C' }, { caseId: 4, caseName: 'D' }] });
+            oList.push({ orderId: 3, case: [{ caseId: 5, caseName: 'E' }, { caseId: 6, caseName: 'F' }] });
+
+            console.log(oList);
+
+            //oList.forEach(o => {
+            //    o.case.forEach(c => {
+            //        caseList.push({
+            //            caseId: c.caseId,
+            //            caseName: c.caseName,
+            //            orderId: o.orderId
+            //        });
+            //    });
+            //});
+
+            console.log(
+                oList.map(o => [...o.case.flatMap(c => Object.assign(c, { orderId: o.orderId }))]).flat(Infinity)
+            );
+
+            //console.log(caseList);
+        });
+    </script>
+
+
+}
