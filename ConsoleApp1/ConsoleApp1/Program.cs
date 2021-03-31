@@ -10,6 +10,64 @@ namespace ConsoleApp1
     class Program
     {
         static void Main(string[] args)
+        {            
+        }
+
+        /// <summary>
+        /// 數值字串格式: 千分位符號加上不限小數位數
+        /// https://www.peterchang.tw/2021/03/blog-post_22.html
+        /// </summary>
+        private static void FormatDemo()
+        {
+            var i1 = 1000000.01;
+
+            Console.WriteLine(i1.ToString("N"));
+            // output: 1,000,000.01
+
+            var i2 = 1000000.1;
+            Console.WriteLine(i2.ToString("N"));
+            // output: 1,000,000.10
+            Console.WriteLine(i2.ToString("#,##.##"));
+            // output: 1,000,000.1
+
+            var i3 = 1000000;
+            Console.WriteLine(i3.ToString("N"));
+            // output: 1,000,000.00
+            Console.WriteLine(i3.ToString("#,##.##"));
+            // output: 1,000,000
+
+            var i4 = 0.01;
+            Console.WriteLine(i4.ToString("#,##.##"));
+            // output: .01
+            Console.WriteLine(i4.ToString("#,#0.##"));
+            // output: 0.01
+
+            var i5 = 0.001;
+            Console.WriteLine(i5.ToString("#,#0.##############"));
+            // output: 0.001
+
+            Console.WriteLine("ToMoneyFormatString");
+
+            Console.WriteLine(1000000.01M.ToMoneyFormatString());
+            // output: 1,000,000.01
+
+            Console.WriteLine(1000000.1M.ToMoneyFormatString());
+            // output: 1,000,000.1
+
+            Console.WriteLine(1000000M.ToMoneyFormatString());
+            // output: 1,000,000
+
+            Console.WriteLine(0.01M.ToMoneyFormatString());
+            // output: 0.01
+
+            Console.WriteLine(0.001M.ToMoneyFormatString());
+            // output: 0.001
+
+            Console.WriteLine(0M.ToMoneyFormatString());
+            // output: 0
+        }
+
+        private static void BigJsonToObject()
         {
             var filepath = @"C:\Users\Peter\Downloads\shops_zh-tw";
             using (var strreader = new StreamReader(filepath))
@@ -26,24 +84,9 @@ namespace ConsoleApp1
             }
 
             Console.ReadLine();
-
-            //NewMethod();
-
-            /*  This code produces the following output:
-
-                deleg(4) = True
-                deleg2(4) = True
-            */
-
-
-
-            //KanbanflowTimeSpendSplite();
-            // CreateRangeDayDirsInYear(2019, @"D:\Peter\2019", f => f.ToString("yyyy-MM-dd"));
-
-            //testMethod2("", "");
         }
 
-        private static void NewMethod()
+        private static void FunDemo()
         {
             // Lambda expression as executable code.
             Func<int, bool> deleg = i => i < 5;
@@ -58,6 +101,12 @@ namespace ConsoleApp1
             Console.WriteLine("deleg2(4) = {0}", deleg2(4));
 
             int i = 0;
+
+            /*  This code produces the following output:
+
+                deleg(4) = True
+                deleg2(4) = True
+            */
         }
 
         public static string testMethod(string a, bool b = false, params string[] arr)
@@ -158,6 +207,15 @@ Ultra Unlock 2020 (1/5)
                     Directory.CreateDirectory(path);
                 }
             }
+        }
+    }
+
+    public static class DecimalExt
+    {
+        public static string ToMoneyFormatString(this decimal money)
+        {
+            var arr = money.ToString().Split(".");
+            return $"{money.ToString("N0")}{(arr.Length > 1 ? "." + arr[1] : "")}";
         }
     }
 }
