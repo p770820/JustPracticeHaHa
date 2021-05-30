@@ -15,14 +15,22 @@ namespace ConsoleApp1
     class Program
     {
         private static List<string> fail = new List<string>();
+        private static string webpath = $"https://i1.bspcdn.xyz/galleries/1891490";
+        private static int pageCount = 201;
+        private static string savePath = "img222";
 
         static async Task Main(string[] args)
         {
-            for (int i = 1; i <= 216; i++)
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            for (int i = 1; i <= pageCount; i++)
             {
                 string jpg = $"{ i }.jpg";
                 string png = $"{ i }.png";
-                if (File.Exists($"img/{jpg}") || File.Exists($"img/{png}"))
+                if (File.Exists($"{savePath}/{jpg}") || File.Exists($"{savePath}/{png}"))
                 {
                     Console.WriteLine($"{i} 已經存在圖片!");
                     continue;
@@ -60,7 +68,7 @@ namespace ConsoleApp1
                         var tempFile = item.Replace(".jpg", "")
                             .Replace(".png", "");
 
-                        if (File.Exists($"img/{ tempFile }.jpg") || File.Exists($"img/{ tempFile }.png"))
+                        if (File.Exists($"{savePath}/{ tempFile }.jpg") || File.Exists($"{savePath}/{ tempFile }.png"))
                         {
                             fail.Remove(item);
                         }
@@ -91,7 +99,7 @@ namespace ConsoleApp1
                     client.Timeout = timeout.Value;
                 }
 
-                var url = $"https://i1.othcdn.xyz/galleries/1915267/{file}";
+                var url = $"{ webpath }/{file}";
                 HttpResponseMessage response = await client.GetAsync(url);
 
 
@@ -104,10 +112,10 @@ namespace ConsoleApp1
                         Console.WriteLine($"{file} download success");
 
                         if (file.Contains("jpg"))
-                            image.Save($"img/{file}", ImageFormat.Jpeg);
+                            image.Save($"{savePath}/{file}", ImageFormat.Jpeg);
 
                         if (file.Contains("png"))
-                            image.Save($"img/{file}", ImageFormat.Png);
+                            image.Save($"{savePath}/{file}", ImageFormat.Png);
                     }
                 }
                 //else if (response.StatusCode.ToString() == 522.ToString())
