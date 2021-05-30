@@ -15,11 +15,11 @@ namespace ConsoleApp1
     class Program
     {
         private static List<string> fail = new List<string>();
-        private static string webpath = $"https://i1.bspcdn.xyz/galleries/1891490";
-        private static int pageCount = 201;
-        private static string savePath = "img222";
+        private static string webpath = $"";
+        private static int pageCount = 0;
+        private static string savePath = "";
 
-        static async Task Main(string[] args)
+        static void Main(string[] args)
         {
             if (!Directory.Exists(savePath))
             {
@@ -39,13 +39,13 @@ namespace ConsoleApp1
                 fail.Add(png);
             }
 
-            await LoopAsync();
+            Loop();
 
             Console.WriteLine("final!");
             Console.ReadKey();
         }
 
-        private static async Task LoopAsync()
+        private static void Loop()
         {
             try
             {
@@ -85,7 +85,7 @@ namespace ConsoleApp1
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("重新執行...");
-                await LoopAsync();
+                Loop();
             }
         }
 
