@@ -31,18 +31,19 @@ namespace ConsoleApp1
                 fail.Add(png);
             }
 
-            await Loop();
+            await LoopAsync();
 
             Console.WriteLine("final!");
             Console.ReadKey();
         }
 
-        private static async Task Loop()
+        private static async Task LoopAsync()
         {
             try
             {
                 while (fail.Any())
                 {
+                    Task[] tasks;
                     var tempList = new List<string>();
                     foreach (var item in fail)
                     {
@@ -51,6 +52,9 @@ namespace ConsoleApp1
                     }
                     Console.WriteLine("");
 
+                    tasks = new Task[tempList.Count];
+
+                    int i = 0;
                     foreach (var item in tempList)
                     {
                         var tempFile = item.Replace(".jpg", "")
@@ -62,22 +66,24 @@ namespace ConsoleApp1
                         }
                         else
                         {
-                            Console.WriteLine($"{ item } downloading ...");
-                            await DownloadImg(item);
+                            tasks[i] = Task.Run(async () => await DownloadImg(item));
+                            i++;
                         }
                     }
+                    Task.WaitAll(tasks);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
                 Console.WriteLine("重新執行...");
-                await Loop();
+                await LoopAsync();
             }
         }
 
         private static async Task DownloadImg(string file, TimeSpan? timeout = null)
         {
+            Console.WriteLine($"{ file } downloading ...");
             using (HttpClient client = new HttpClient())
             {
                 if (timeout != null)
@@ -103,7 +109,6 @@ namespace ConsoleApp1
                         if (file.Contains("png"))
                             image.Save($"img/{file}", ImageFormat.Png);
                     }
-                    fail.Remove(file);
                 }
                 //else if (response.StatusCode.ToString() == 522.ToString())
                 //{
