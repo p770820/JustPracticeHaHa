@@ -18,6 +18,7 @@ namespace ConsoleApp1
         private static string webpath = $"";
         private static int pageCount = 0;
         private static string savePath = "";
+        private static object _lock = new object();
 
         static void Main(string[] args)
         {
@@ -78,7 +79,8 @@ namespace ConsoleApp1
                             i++;
                         }
                     }
-                    Task.WaitAll(tasks);
+                    if(tasks.Length > 0)
+                        Task.WaitAll(tasks);
                 }
             }
             catch (Exception ex)
@@ -125,14 +127,17 @@ namespace ConsoleApp1
                 //}
                 else
                 {
-                    if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
+                    lock (_lock)
                     {
-                        if (!fail.Contains(file))
-                            fail.Add(file);
-                    }
-                    else
-                    {
-                        fail.Remove(file);
+                        if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
+                        {
+                            if (!fail.Contains(file))
+                                fail.Add(file);
+                        }
+                        else
+                        {
+                            fail.Remove(file);
+                        }
                     }
                     Console.WriteLine($"{file}: {response.StatusCode}");
                 }
