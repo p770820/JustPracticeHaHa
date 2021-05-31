@@ -2,15 +2,170 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
     class Program
     {
+        private static List<string> fail = new List<string>();
+        private static string webpath = $"";
+        private static int pageCount = 0;
+        private static string savePath = "";
+        private static object _lock = new object();
+
         static void Main(string[] args)
-        {            
+        {
+            if (!Directory.Exists(savePath))
+            {
+                Directory.CreateDirectory(savePath);
+            }
+
+            for (int i = 1; i <= pageCount; i++)
+            {
+                string jpg = $"{ i }.jpg";
+                string png = $"{ i }.png";
+                if (File.Exists($"{savePath}/{jpg}") || File.Exists($"{savePath}/{png}"))
+                {
+                    Console.WriteLine($"{i} 已經存在圖片!");
+                    continue;
+                }
+                fail.Add(jpg);
+                fail.Add(png);
+            }
+
+            Loop();
+
+            Console.WriteLine("final!");
+            Console.ReadKey();
+        }
+
+        private static void Loop()
+        {
+            try
+            {
+                while (fail.Any())
+                {
+                    Task[] tasks;
+                    var tempList = new List<string>();
+                    foreach (var item in fail)
+                    {
+                        Console.Write(item + ",");
+                        tempList.Add(item);
+                    }
+                    Console.WriteLine("");
+
+                    tasks = new Task[tempList.Count];
+
+                    int i = 0;
+                    foreach (var item in tempList)
+                    {
+                        var tempFile = item.Replace(".jpg", "")
+                            .Replace(".png", "");
+
+                        if (File.Exists($"{savePath}/{ tempFile }.jpg") || File.Exists($"{savePath}/{ tempFile }.png"))
+                        {
+                            fail.Remove(item);
+                        }
+                        else
+                        {
+                            tasks[i] = Task.Run(async () => await DownloadImg(item));
+                            i++;
+                        }
+                    }
+                    if(tasks.Length > 0)
+                        Task.WaitAll(tasks);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine("重新執行...");
+                Loop();
+            }
+        }
+
+        private static async Task DownloadImg(string file, TimeSpan? timeout = null)
+        {
+            Console.WriteLine($"{ file } downloading ...");
+            using (HttpClient client = new HttpClient())
+            {
+                if (timeout != null)
+                {
+                    client.Timeout = timeout.Value;
+                }
+
+                var url = $"{ webpath }/{file}";
+                HttpResponseMessage response = await client.GetAsync(url);
+
+
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    byte[] content = await response.Content.ReadAsByteArrayAsync();
+
+                    using (Image image = Image.FromStream(new MemoryStream(content)))
+                    {
+                        Console.WriteLine($"{file} download success");
+
+                        if (file.Contains("jpg"))
+                            image.Save($"{savePath}/{file}", ImageFormat.Jpeg);
+
+                        if (file.Contains("png"))
+                            image.Save($"{savePath}/{file}", ImageFormat.Png);
+                    }
+                }
+                //else if (response.StatusCode.ToString() == 522.ToString())
+                //{
+                //    //await DownloadImg(file, TimeSpan.FromMinutes(10));
+                //    Console.WriteLine($"{file}: {response.StatusCode}=============================");
+                //}
+                else
+                {
+                    lock (_lock)
+                    {
+                        if (response.StatusCode != System.Net.HttpStatusCode.NotFound)
+                        {
+                            if (!fail.Contains(file))
+                                fail.Add(file);
+                        }
+                        else
+                        {
+                            fail.Remove(file);
+                        }
+                    }
+                    Console.WriteLine($"{file}: {response.StatusCode}");
+                }
+            }
+        }
+
+        private static void DeeCopyList()
+        {
+            var list1 = new List<testClass>()
+            {
+                new testClass() {Number=1, Name="Chad"},
+                new testClass() {Number=2, Name="Tom"},
+                new testClass() {Number=3, Name="Peter"}
+            };
+
+            var json = JsonConvert.SerializeObject(list1);
+
+            var list2 = JsonConvert.DeserializeObject<List<testClass>>(json);
+            list2.Single(x => x.Number == 1).Name = "paul";
+
+            Console.WriteLine(JsonConvert.SerializeObject(list1));
+            Console.WriteLine(JsonConvert.SerializeObject(list2));
+        }
+
+        public class testClass
+        {
+            public int Number { get; set; }
+            public string Name { get; set; }
         }
 
         /// <summary>
@@ -219,3 +374,4 @@ Ultra Unlock 2020 (1/5)
         }
     }
 }
+
