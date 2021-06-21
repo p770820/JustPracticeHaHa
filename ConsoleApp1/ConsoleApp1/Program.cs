@@ -19,8 +19,26 @@ namespace ConsoleApp1
         private static int pageCount = 0;
         private static string savePath = "";
         private static object _lock = new object();
+        
 
         static void Main(string[] args)
+        {
+            ImgGETGET()
+        }
+
+        private static void FriendsCompare()
+        {
+            var aaa = BeforeFriends.Data.Except(AfterFriends.Data);
+            var bbb = AfterFriends.Data.Except(BeforeFriends.Data);
+
+            Console.WriteLine("消失的朋友 結果:::::::::::::::::::::::::::::::::::::::::");
+            Console.WriteLine(string.Join(Environment.NewLine, aaa));
+            Console.WriteLine("=================================================");
+            Console.WriteLine("新增的朋友 結果:::::::::::::::::::::::::::::::::::::::::::");
+            Console.WriteLine(string.Join(Environment.NewLine, bbb));
+        }
+
+        private static void ImgGETGET()
         {
             if (!Directory.Exists(savePath))
             {
