@@ -7,16 +7,17 @@ namespace ObjectDumperDemo.ConsoleApp
     {
         static void Main(string[] args)
         {
-            // https://github.com/thomasgalliker/ObjectDumper
             var persons = new List<Person>
             {
                 new Person { Name = "John", Age = 20, },
                 new Person { Name = "Thomas", Age = 30, },
             };
 
-            var personsDump = ObjectDumper.Dump(persons);
+            PeterConsole.WriteLine(persons);
+            PeterConsole.WriteLine(new { Name = "Peter", Date = DateTime.Now });
+            PeterConsole.WriteLine(null);
+            PeterConsole.WriteLine("");
 
-            Console.WriteLine(personsDump);
             Console.ReadLine();
         }
     }
