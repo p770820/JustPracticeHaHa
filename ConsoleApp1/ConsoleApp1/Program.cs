@@ -23,7 +23,7 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            ImgGETGET()
+            ImgGETGET();
         }
 
         private static void FriendsCompare()
