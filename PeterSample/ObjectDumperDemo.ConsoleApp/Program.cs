@@ -9,8 +9,10 @@ namespace ObjectDumperDemo.ConsoleApp
         {
             var persons = new List<Person>
             {
-                new Person { Name = "John", Age = 20, },
-                new Person { Name = "Thomas", Age = 30, },
+                new Person { Name = "John", Age = 20,
+                    NickName = new string[] { "猛John", "JJ" } },
+                new Person { Name = "Thomas", Age = 30,
+                    NickName = new string[] { "滅霸", "響指哥" }},
             };
 
             PeterConsole.WriteLine(persons);
