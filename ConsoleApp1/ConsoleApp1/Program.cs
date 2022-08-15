@@ -6,7 +6,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -23,7 +25,48 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            ImgGETGET();
+            //MailMessage msg = new MailMessage();
+            //msg.From = new MailAddress("p770820@gmail.com");
+            //msg.To.Add("peter@miniasp.com");
+            //msg.Subject = "Subject";
+            //msg.Body = "<h1>Hello Peter</h1>";
+            //msg.IsBodyHtml = true;
+            ////msg.ReplyToList.Add(new MailAddress("receiver@gmail.com", "receiver"));
+
+            //using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+            //{
+
+            //    //smtp.Credentials = new NetworkCredential("usedcar@carnews.com", "protousedcar");
+            //    //smtp.EnableSsl = true;
+            //    //smtp.Send(msg);
+
+            //    smtp.UseDefaultCredentials = false;
+            //    smtp.Credentials = new NetworkCredential("p770820@gmail.com", "vzcwsonzknixkvqu");
+            //    //smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //    smtp.EnableSsl = true;
+            //    smtp.Send(msg);
+            //}
+
+
+            //CreateRangeDayDirsInYear(2022, @"D:\Peter\2022", a => a.ToString("yyyy-MM-dd"));
+
+            //var testStr = "📆日記 2021-05-05";
+            //var pattern = @"\d{4}-\d{2}-\d{2}";
+
+            //var m = Regex.Match(testStr, pattern);
+
+            //Console.WriteLine(m.Value);
+
+
+
+            // var last = new DateTime(2021, 11, 15);
+
+            // var next = last.AddDays(7 * 12);
+
+            //Console.WriteLine(next);
+
+            FriendsCompare();
+            Console.WriteLine();
         }
 
         private static void FriendsCompare()
